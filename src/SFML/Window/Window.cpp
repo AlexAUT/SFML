@@ -151,6 +151,8 @@ void Window::create(WindowHandle handle, const ContextSettings& settings)
 ////////////////////////////////////////////////////////////
 void Window::close()
 {
+    onDestroy();
+
     // Delete the context
     delete m_context;
     m_context = NULL;
@@ -397,6 +399,11 @@ void Window::onCreate()
     // Nothing by default
 }
 
+////////////////////////////////////////////////////////////
+void Window::onDestroy()
+{
+    // Nothing by default
+}
 
 ////////////////////////////////////////////////////////////
 void Window::onResize()
