@@ -68,6 +68,11 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Android")
 # let's avoid it so the actual error is more visible
 elseif(${CYGWIN})
     message(FATAL_ERROR "Unfortunately SFML doesn't support Cygwin's 'hybrid' status between both Windows and Linux derivatives.\nIf you insist on using the GCC, please use a standalone build of MinGW without the Cygwin environment instead.")
+elseif(${CMAKE_SYSTEM_NAME} MATCHES "Emscripten")
+    set(SFML_OS_EMSCRIPTEN 1)
+
+    # use the OpenGL ES implementation on Emscripten
+    set(OPENGL_ES 1)
 else()
     message(FATAL_ERROR "Unsupported operating system or environment")
     return()
@@ -129,7 +134,7 @@ endif()
 # define the install directory for miscellaneous files
 if(SFML_OS_WINDOWS OR SFML_OS_IOS)
     set(INSTALL_MISC_DIR .)
-elseif(SFML_OS_LINUX OR SFML_OS_FREEBSD OR SFML_OS_MACOSX)
+elseif(SFML_OS_LINUX OR SFML_OS_FREEBSD OR SFML_OS_MACOSX OR SFML_OS_EMSCRIPTEN)
     set(INSTALL_MISC_DIR share/SFML)
 elseif(SFML_OS_ANDROID)
     set(INSTALL_MISC_DIR ${ANDROID_NDK}/sources/sfml)
