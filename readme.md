@@ -1,3 +1,5 @@
+All credits goes to https://github.com/binary1248, I'm just updating his coe
+
 ![SFML logo](http://www.sfml-dev.org/images/logo.png)
 
 # SFML — Simple and Fast Multimedia Library
