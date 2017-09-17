@@ -35,7 +35,7 @@
 #elif defined(SFML_SYSTEM_LINUX) || defined(SFML_SYSTEM_FREEBSD)
     #include <SFML/Window/Unix/ClipboardImpl.hpp>
 #elif defined(SFML_SYSTEM_EMSCRIPTEN)
-    #include <SFML/Window/Emscripten/ClipboardImpl.cpp>
+    #include <SFML/Window/Emscripten/ClipboardImpl.hpp>
 #elif defined(SFML_SYSTEM_MACOS)
     #include <SFML/Window/OSX/ClipboardImpl.hpp>
 #elif defined(SFML_SYSTEM_IOS)
