@@ -64,6 +64,9 @@ namespace
 
     return states->display;
 
+#elif defined(SFML_SYSTEM_EMSCRIPTEN)
+
+
 #endif
     }
 }

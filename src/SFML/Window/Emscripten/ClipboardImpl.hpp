@@ -22,62 +22,55 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_OPENGL_HPP
-#define SFML_OPENGL_HPP
-
-
-////////////////////////////////////////////////////////////
-/// Headers
-////////////////////////////////////////////////////////////
-#include <SFML/Config.hpp>
-
+#ifndef SFML_CLIPBOARDIMPL_EMSCRIPTEN_HPP
+#define SFML_CLIPBOARDIMPL_EMSCRIPTEN_HPP
 
 ////////////////////////////////////////////////////////////
-/// This file just includes the OpenGL headers,
-/// which have actually different paths on each system
+// Headers
 ////////////////////////////////////////////////////////////
-#if defined(SFML_SYSTEM_WINDOWS)
+#include <SFML/System/String.hpp>
 
-    // The Visual C++ version of gl.h uses WINGDIAPI and APIENTRY but doesn't define them
-    #ifdef _MSC_VER
-        #include <windows.h>
-    #endif
+namespace sf
+{
+namespace priv
+{
 
-    #include <GL/gl.h>
+////////////////////////////////////////////////////////////
+/// \brief Give access to the system clipboard
+///
+////////////////////////////////////////////////////////////
+class ClipboardImpl
+{
+public:
 
-#elif defined(SFML_SYSTEM_LINUX) || defined(SFML_SYSTEM_FREEBSD) || defined(SFML_SYSTEM_OPENBSD)
+    ////////////////////////////////////////////////////////////
+    /// \brief Get the content of the clipboard as string data
+    ///
+    /// This function returns the content of the clipboard
+    /// as a string. If the clipboard does not contain string
+    /// it returns an empty sf::String object.
+    ///
+    /// \return Current content of the clipboard
+    ///
+    ////////////////////////////////////////////////////////////
+    static String getString() { return ""; }
 
-    #if defined(SFML_OPENGL_ES)
-        #include <GLES/gl.h>
-        #include <GLES/glext.h>
-    #else
-        #include <GL/gl.h>
-    #endif
+    ////////////////////////////////////////////////////////////
+    /// \brief Set the content of the clipboard as string data
+    ///
+    /// This function sets the content of the clipboard as a
+    /// string.
+    ///
+    /// \param text sf::String object containing the data to be sent
+    /// to the clipboard
+    ///
+    ////////////////////////////////////////////////////////////
+    static void setString(const String& text) {}
+};
 
-#elif defined(SFML_SYSTEM_MACOS)
+} // namespace priv
 
-    #include <OpenGL/gl.h>
-
-#elif defined (SFML_SYSTEM_IOS)
-
-    #include <OpenGLES/ES1/gl.h>
-    #include <OpenGLES/ES1/glext.h>
-
-#elif defined (SFML_SYSTEM_ANDROID)
-
-    #include <GLES/gl.h>
-    #include <GLES/glext.h>
-    
-    // We're not using OpenGL ES 2+ yet, but we can use the sRGB extension
-    #include <GLES2/gl2platform.h>
-    #include <GLES2/gl2ext.h>
-
-#elif defined (SFML_SYSTEM_EMSCRIPTEN)
-
-    #include <GLES2/gl2.h>
-    #include <GLES2/gl2ext.h>
-
-#endif
+} // namespace sf
 
 
-#endif // SFML_OPENGL_HPP
+#endif // SFML_CLIPBOARDIMPL_EMSCRIPTEN_HPP

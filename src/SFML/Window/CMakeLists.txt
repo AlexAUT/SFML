@@ -48,7 +48,7 @@ set(SRC
     ${SRCROOT}/WindowImpl.hpp
     ${INCROOT}/WindowStyle.hpp
 )
-if(SFML_OPENGL_ES AND NOT SFML_OS_IOS)
+if(SFML_OPENGL_ES AND NOT SFML_OS_IOS AND NOT SFML_OS_EMSCRIPTEN)
     list(APPEND SRC ${SRCROOT}/EGLCheck.cpp)
     list(APPEND SRC ${SRCROOT}/EGLCheck.hpp)
     list(APPEND SRC ${SRCROOT}/EglContext.cpp)
@@ -224,6 +224,12 @@ elseif(SFML_OS_ANDROID)
         ${SRCROOT}/Android/SensorImpl.cpp
     )
     source_group("android" FILES ${PLATFORM_SRC})
+elseif(SFML_OS_EMSCRIPTEN)
+    set(PLATFORM_SRC
+      ${SRCROOT}/Emscripten/CursorImpl.cpp
+      ${SRCROOT}/Emscripten/EglContext.cpp
+      ${SRCROOT}/Emscripten/EmscriptenImpl.cpp
+    )
 endif()
 
 # define the sfml-window target

@@ -22,26 +22,47 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_CLIPBOARDIMPL_HPP
-#define SFML_CLIPBOARDIMPL_HPP
-
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Config.hpp>
+#include <SFML/Window/Emscripten/CursorImpl.hpp>
 
-#if defined(SFML_SYSTEM_WINDOWS)
-    #include <SFML/Window/Win32/ClipboardImpl.hpp>
-#elif defined(SFML_SYSTEM_LINUX) || defined(SFML_SYSTEM_FREEBSD) || defined(SFML_SYSTEM_OPENBSD)
-    #include <SFML/Window/Unix/ClipboardImpl.hpp>
-#elif defined(SFML_SYSTEM_MACOS)
-    #include <SFML/Window/OSX/ClipboardImpl.hpp>
-#elif defined(SFML_SYSTEM_IOS)
-    #include <SFML/Window/iOS/ClipboardImpl.hpp>
-#elif defined(SFML_SYSTEM_ANDROID)
-    #include <SFML/Window/Android/ClipboardImpl.hpp>
-#elif defined(SFML_SYSTEM_EMSCRIPTEN)
-    #include <SFML/Window/Emscripten/ClipboardImpl.hpp>
-#endif
+namespace sf
+{
+namespace priv
+{
 
-#endif // SFML_CLIPBOARDIMPL_HPP
+////////////////////////////////////////////////////////////
+CursorImpl::CursorImpl()
+{
+    // Nothing.
+}
+
+
+////////////////////////////////////////////////////////////
+CursorImpl::~CursorImpl()
+{
+    // Nothing.
+}
+
+
+////////////////////////////////////////////////////////////
+bool CursorImpl::loadFromPixels(const Uint8* pixels, Vector2u size, Vector2u hotspot)
+{
+    // Not supported
+    return false;
+}
+
+
+////////////////////////////////////////////////////////////
+bool CursorImpl::loadFromSystem(Cursor::Type type)
+{
+    // Not supported
+    return false;
+}
+
+
+} // namespace priv
+
+} // namespace sf
+
