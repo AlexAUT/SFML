@@ -417,7 +417,6 @@ else()
             COMPONENT devel)
 endif()
 
-message(STATUS "Install: ${SFML_MISC_INSTALL_PREFIX}")
 install(FILES license.md DESTINATION ${SFML_MISC_INSTALL_PREFIX})
 install(FILES readme.md DESTINATION ${SFML_MISC_INSTALL_PREFIX})
 

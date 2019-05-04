@@ -176,20 +176,42 @@ void ANativeActivity_onCreate(ANativeActivity* activity, void* savedState, size_
 #undef _SFML_S
 #undef _SFML_QS
 #endif
+
+#if defined(SFML_IMPORT_AUDIO)
     loadLibrary("openal", lJNIEnv, ObjectActivityInfo);
+#endif
 
 #if !defined(SFML_DEBUG)
     loadLibrary("sfml-system", lJNIEnv, ObjectActivityInfo);
+
+#if defined(SFML_IMPORT_WINDOW)
     loadLibrary("sfml-window", lJNIEnv, ObjectActivityInfo);
+#endif
+#if defined(SFML_IMPORT_GRAPHICS)
     loadLibrary("sfml-graphics", lJNIEnv, ObjectActivityInfo);
+#endif
+#if defined(SFML_IMPORT_AUDIO)
     loadLibrary("sfml-audio", lJNIEnv, ObjectActivityInfo);
+#endif
+#if defined(SFML_IMPORT_NETWORK)
     loadLibrary("sfml-network", lJNIEnv, ObjectActivityInfo);
+#endif
 #else
+
     loadLibrary("sfml-system-d", lJNIEnv, ObjectActivityInfo);
+#if defined(SFML_IMPORT_WINDOW)
     loadLibrary("sfml-window-d", lJNIEnv, ObjectActivityInfo);
+#endif
+#if defined(SFML_IMPORT_GRAPHICS)
     loadLibrary("sfml-graphics-d", lJNIEnv, ObjectActivityInfo);
+#endif
+#if defined(SFML_IMPORT_AUDIO)
     loadLibrary("sfml-audio-d", lJNIEnv, ObjectActivityInfo);
+#endif
+#if defined(SFML_IMPORT_NETWORK)
     loadLibrary("sfml-network-d", lJNIEnv, ObjectActivityInfo);
+#endif
+
 #endif
 
     void* handle = loadLibrary(getLibraryName(lJNIEnv, ObjectActivityInfo), lJNIEnv, ObjectActivityInfo);
